@@ -16,6 +16,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // 手动创建
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        // 设置window 的根控制器
+//       window?.rootViewController = UINavigationController(rootViewController: QHGoodListViewController())
+        
+        // 首页
+        let FirstPage = FirstViewController()
+        let navFirstPage = UINavigationController(rootViewController: FirstPage)
+        navFirstPage.tabBarItem = UITabBarItem(title: "首页", image: UIImage(named: "tabbar_icon_home"), tag: 1)
+        
+        // 货架
+        let SecondPage = SecondViewController()
+        let navSecondPage = UINavigationController(rootViewController: SecondPage)
+        navSecondPage.tabBarItem = UITabBarItem(title: "货架", image: UIImage(named: "tabbar_icon_category"), tag: 2)
+        
+        
+        // 购物车
+        let ThirdPage = QHGoodListViewController()
+        let navThirdPage = UINavigationController(rootViewController: ThirdPage)
+        navThirdPage.tabBarItem = UITabBarItem(title: "购物车", image: UIImage(named: "tabbar_icon_cart"), tag: 3)
+        
+        // 我的
+        let ForthPage = FourthViewController()
+        let navFourthPage = UINavigationController(rootViewController: ForthPage)
+        navFourthPage.tabBarItem = UITabBarItem(title: "我的", image: UIImage(named: "tabbar_icon_mine"), tag: 4)
+        
+        
+        
+        let items = [navFirstPage,navSecondPage,navThirdPage,navFourthPage]
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = items
+        
+        window?.rootViewController = tabBarController
+       
+        // 设置window 为主窗口
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
